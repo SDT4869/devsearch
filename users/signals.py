@@ -47,7 +47,14 @@ def deleteUser(sender, instance, **kwargs):
         pass
 
 
+# # @receiver(post_save, sender=Profile)
+# def setDefaultImage(sender, instance, **kwargs):
+#     if instance.profile_image is None: 
+#         instance.profile_image = 'profiles/user-default.png'
+#         instance.save()
+
 post_save.connect(createProfile, sender=User)
 post_save.connect(updateUser, sender=Profile)
+# post_save.connect(setDefaultImage, sender=Profile)
 post_delete.connect(deleteUser, sender=Profile)
 
